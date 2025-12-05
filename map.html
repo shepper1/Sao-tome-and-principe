@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carte du voyage - undefined</title>
+  <style>
+    body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
+    #map { height: 100vh; width: 100%; }
+    .info-window { max-width: 250px; font-family: Arial, sans-serif; }
+    .info-window img { width: 100%; height: auto; border-radius: 8px; margin-bottom: 10px; }
+    .info-window h3 { margin: 0 0 5px 0; font-size: 16px; color: #333; }
+    .info-window p { margin: 5px 0; font-size: 14px; color: #666; }
+    .info-window a { color: #1a73e8; text-decoration: none; }
+    .info-window a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  
+  <script>
+    function initMap() {
+      const center = { lat: -2.4695120444444445, lng: 0.7584172333333332 };
+      const map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 10,
+        center: center
+      });
+      
+      const markers = [{"lat":0.3375532,"lng":6.7298686,"name":"São Tomé (ville)","jour":1,"titre":"Arrivée et Douceur Tropicale","streetViewUrl":"https://maps.googleapis.com/maps/api/streetview?size=600x400&location=0.3375532,6.7298686&key=AIzaSyBXsVY9wZUc8Q9VnK5oYDc8bBNvzvfDH4Q","streetViewLinkUrl":"https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=0.3375532,6.7298686","aiImageUrl":"jour1.jpg"},{"lat":0.3375532,"lng":6.7298686,"name":"Nord de São Tomé","jour":2,"titre":"Traces Coloniales et Plages Secrètes du Nord","streetViewUrl":"https://maps.googleapis.com/maps/api/streetview?size=600x400&location=0.3375532,6.7298686&key=AIzaSyBXsVY9wZUc8Q9VnK5oYDc8bBNvzvfDH4Q","streetViewLinkUrl":"https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=0.3375532,6.7298686","aiImageUrl":"jour2.jpg"},{"lat":0.2602568,"lng":6.621061099999999,"name":"Centre de São Tomé","jour":3,"titre":"Cœur Vert et Saveurs Locales","streetViewUrl":"https://maps.googleapis.com/maps/api/streetview?size=600x400&location=0.2602568,6.621061099999999&key=AIzaSyBXsVY9wZUc8Q9VnK5oYDc8bBNvzvfDH4Q","streetViewLinkUrl":"https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=0.2602568,6.621061099999999","aiImageUrl":"jour3.jpg"},{"lat":0.3375532,"lng":6.7298686,"name":"Sud de São Tomé","jour":4,"titre":"Mystères Volcaniques et Littoral Sauvage","streetViewUrl":"https://maps.googleapis.com/maps/api/streetview?size=600x400&location=0.3375532,6.7298686&key=AIzaSyBXsVY9wZUc8Q9VnK5oYDc8bBNvzvfDH4Q","streetViewLinkUrl":"https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=0.3375532,6.7298686","aiImageUrl":"jour4.jpg"},{"lat":0.0341798,"lng":6.5336443,"name":"Parc Naturel d'Ôbo / Porto Alegre","jour":5,"titre":"Parc Naturel d'Ôbo et Villages Authentiques","streetViewUrl":"https://maps.googleapis.com/maps/api/streetview?size=600x400&location=0.0341798,6.5336443&key=AIzaSyBXsVY9wZUc8Q9VnK5oYDc8bBNvzvfDH4Q","streetViewLinkUrl":"https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=0.0341798,6.5336443","aiImageUrl":"jour5.jpg"},{"lat":-0.0069495,"lng":6.5223089,"name":"Ilhéu das Rolas","jour":6,"titre":"L'Île de Rolas et la Ligne de l'Équateur","streetViewUrl":"https://maps.googleapis.com/maps/api/streetview?size=600x400&location=-0.0069495,6.5223089&key=AIzaSyBXsVY9wZUc8Q9VnK5oYDc8bBNvzvfDH4Q","streetViewLinkUrl":"https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=-0.0069495,6.5223089","aiImageUrl":"jour6.jpg"},{"lat":0.1397772,"lng":6.647108999999999,"name":"Roça São João dos Angolares","jour":7,"titre":"Retour vers le Nord et Gastronomie Locale","streetViewUrl":"https://maps.googleapis.com/maps/api/streetview?size=600x400&location=0.1397772,6.647108999999999&key=AIzaSyBXsVY9wZUc8Q9VnK5oYDc8bBNvzvfDH4Q","streetViewLinkUrl":"https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=0.1397772,6.647108999999999","aiImageUrl":"jour7.jpg"},{"lat":-24.0030855,"lng":-46.4178426,"name":"Praia Micondo ou Praia Grande","jour":8,"titre":"Journée Détente et Plage","streetViewUrl":"https://maps.googleapis.com/maps/api/streetview?size=600x400&location=-24.0030855,-46.4178426&key=AIzaSyBXsVY9wZUc8Q9VnK5oYDc8bBNvzvfDH4Q","streetViewLinkUrl":"https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=-24.0030855,-46.4178426","aiImageUrl":"jour8.jpg"},{"lat":0.3375532,"lng":6.7298686,"name":"São Tomé (ville) / Aéroport","jour":10,"titre":"Départ de São Tomé","streetViewUrl":"https://maps.googleapis.com/maps/api/streetview?size=600x400&location=0.3375532,6.7298686&key=AIzaSyBXsVY9wZUc8Q9VnK5oYDc8bBNvzvfDH4Q","streetViewLinkUrl":"https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=0.3375532,6.7298686","aiImageUrl":"jour10.jpg"}];
+      
+      markers.forEach((markerData) => {
+        const marker = new google.maps.Marker({
+          position: { lat: markerData.lat, lng: markerData.lng },
+          map: map,
+          title: markerData.name,
+          label: String(markerData.jour)
+        });
+        
+        const contentString = `
+          <div class="info-window">
+            <img src="${markerData.streetViewUrl}" alt="Street View de ${markerData.name}" />
+            <h3>Jour ${markerData.jour}</h3>
+            <p><strong>${markerData.name}</strong></p>
+            <p><a href="${markerData.streetViewLinkUrl}" target="_blank" rel="noopener noreferrer"><strong>${markerData.titre}</strong></a></p>
+          </div>
+        `;
+        
+        const infoWindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+        
+        marker.addListener('click', () => {
+          infoWindow.open(map, marker);
+        });
+      });
+    }
+  </script>
+  
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXsVY9wZUc8Q9VnK5oYDc8bBNvzvfDH4Q&callback=initMap">
+  </script>
+</body>
+</html>
